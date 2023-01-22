@@ -6,6 +6,11 @@ import (
 	"jang-article/internal/adapter/env"
 	pg "jang-article/internal/adapter/postgres"
 	rds "jang-article/internal/adapter/redis"
+	"jang-article/internal/adapter/usecase"
+	"jang-article/internal/adapter/validation"
+
+	handler "jang-article/internal/adapter/http"
+
 	"log"
 	"strconv"
 
@@ -26,6 +31,8 @@ func main() {
 	if err != nil {
 		log.Panic(err)
 	}
+
+	vald := validation.New()
 
 	redisClient := redis.NewClient(&redis.Options{
 		Addr:     config.RedisConfig.Host,
@@ -53,9 +60,12 @@ func main() {
 	}
 
 	pgClient := pg.New(postgres)
-	articles, err := pgClient.GetAll()
-	if err != nil {
-		log.Panic(err)
-	}
-	fmt.Println(articles)
+
+	uc := usecase.NewUsecases(vald, pgClient, rds)
+
+	config.App.Port = 8080
+
+	app := handler.NewRouter(config, rds, pgClient, uc)
+
+	app.Start(ctx)
 }

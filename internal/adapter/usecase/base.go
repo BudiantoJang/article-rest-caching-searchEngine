@@ -1,23 +1,29 @@
 package usecase
 
-import "jang-article/internal/port"
+import (
+	"jang-article/internal/port"
+)
 
-type Usecases struct {
-	Article *article
+type (
+	Usecases struct {
+		Article *article
 
-	common   usecase
-	database port.DatabaseRepository
-	cache    port.CacheRepository
-}
+		common    usecase
+		validator port.Validation
+		database  port.DatabaseRepository
+		cache     port.CacheRepository
+	}
 
-type usecase struct {
-	ucs *Usecases
-}
+	usecase struct {
+		ucs *Usecases
+	}
+)
 
-func NewUsecases(pg port.DatabaseRepository, rd port.CacheRepository) *Usecases {
+func NewUsecases(v port.Validation, pg port.DatabaseRepository, rd port.CacheRepository) *Usecases {
 	uc := &Usecases{
-		database: pg,
-		cache:    rd,
+		validator: v,
+		database:  pg,
+		cache:     rd,
 	}
 
 	uc.common.ucs = uc
