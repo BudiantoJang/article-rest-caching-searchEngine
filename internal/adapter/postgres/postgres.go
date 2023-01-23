@@ -9,10 +9,14 @@ import (
 
 type Client struct {
 	Client *gorm.DB
+	Redis  port.CacheRepository
 }
 
-func New(client *gorm.DB) port.DatabaseRepository {
-	return &Client{client}
+func New(client *gorm.DB, redis port.CacheRepository) port.DatabaseRepository {
+	return &Client{
+		Client: client,
+		Redis:  redis,
+	}
 }
 
 func (p *Client) Save(article model.Article) (model.Article, error) {

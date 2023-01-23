@@ -2,7 +2,6 @@ package validation
 
 import (
 	"context"
-	"fmt"
 	"jang-article/internal/model"
 	"reflect"
 	"strings"
@@ -38,7 +37,6 @@ func (r *RequestValidator) ValidateRequest(ctx context.Context, req interface{})
 				Code:        model.ResponseCode99,
 				Description: err,
 			}
-			fmt.Println("1")
 			return validationResponse
 		}
 		validationResponse.Description = err

@@ -18,4 +18,5 @@ func New(app *echo.Group, art port.ArticleUsecase) {
 
 	article := app.Group("/article")
 	article.POST("", ah.CreateNewArticle())
+	article.GET("", ah.FindArticle())
 }

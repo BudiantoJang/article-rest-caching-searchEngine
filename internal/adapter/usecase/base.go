@@ -11,6 +11,7 @@ type (
 		common    usecase
 		validator port.Validation
 		database  port.DatabaseRepository
+		search    port.SearchRepository
 		cache     port.CacheRepository
 	}
 
@@ -19,11 +20,12 @@ type (
 	}
 )
 
-func NewUsecases(v port.Validation, pg port.DatabaseRepository, rd port.CacheRepository) *Usecases {
+func NewUsecases(v port.Validation, pg port.DatabaseRepository, rd port.CacheRepository, rdsearch port.SearchRepository) *Usecases {
 	uc := &Usecases{
 		validator: v,
 		database:  pg,
 		cache:     rd,
+		search:    rdsearch,
 	}
 
 	uc.common.ucs = uc
