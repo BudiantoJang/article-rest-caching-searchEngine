@@ -1,5 +1,2 @@
-#local env variable
-.envrc
-
 # test result
 cov.out

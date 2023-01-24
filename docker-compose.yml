@@ -3,39 +3,18 @@ version: "3.8"
 services:
   redis-stack-server:
     container_name: redis-stack-server
-    image: redis-stack
+    image: redis-stack-server
     ports: 
-      - 6378:6379
+      - 6379:6379
     networks:
-      - golang-network
+      - article-network
   postgres:
     container_name: postgres
-    image: vigorous_dewdney
+    image: postgres
     ports:
-      - 5431:5432
+      - 5432:5432
     networks:
-      - golang-network
-  golang:
-    container_name: my-golang-app
-    ports:
-      - 8080:8080
-    depends_on:
-      - redis-stack-server
-      - postgres
-    environment:
-    - REDIS_HOST=localhost:6378
-    - REDIS_PASSWORD=
-    - REDIS_DB=0
-    - REDISEARCH_HOST=localhost:6378
-    - REDISEARCH_INDEX"articleIndex
-    - POSTGRES_HOST"localhost
-    - POSTGRES_USER=postgres
-    - POSTGRES_PASSWORD=mysecret
-    - POSTGRES_DB_NAME=postgres
-    - POSTGRES_PORT=5431
-    networks:
-      - golang-network
-
+      - article-network
 networks:
-  golang-network:
-    name: golang-network
+  article-network:
+    name: article-network
