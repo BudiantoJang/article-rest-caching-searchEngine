@@ -1,8 +1,6 @@
-# Jang's Fundraising Application
+# Jang's Article Back-End Application
+This is a simple back-end system for article application that allows users to create article and search for article. Implementing Redis and Redisearch makes the application faster, easier, and more efficient to use
 
-This is a simple back-end system for fundraising application that allows users to create campaigns and contribute to other campaigns. To further improve the system, I have added JWT authentication and authorization to the system to make it more secure. I have also added Midtrans as a payment gateway to the system to make it more realistic and make it easier for contributors to make a payment.
-
-## Developing
 ### Prerequisites
 - Go 1.18
 - Docker
