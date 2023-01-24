@@ -3,7 +3,6 @@ package redis
 import (
 	"context"
 	"encoding/json"
-	"jang-article/internal/port"
 	"time"
 
 	"github.com/go-redis/redis/v8"
@@ -13,7 +12,7 @@ type Client struct {
 	Client *redis.Client
 }
 
-func New(client *redis.Client) port.CacheRepository {
+func New(client *redis.Client) *Client {
 	return &Client{client}
 }
 

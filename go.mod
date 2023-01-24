@@ -7,8 +7,9 @@ require (
 	github.com/RediSearch/redisearch-go v1.1.1
 	github.com/go-playground/validator v9.31.0+incompatible
 	github.com/go-redis/redis/v8 v8.11.5
+	github.com/go-redis/redismock/v8 v8.11.5
+	github.com/golang/mock v1.6.0
 	github.com/labstack/echo/v4 v4.10.0
-	github.com/mitchellh/mapstructure v1.5.0
 	github.com/stretchr/testify v1.8.1
 	gorm.io/driver/postgres v1.4.6
 	gorm.io/gorm v1.24.3
